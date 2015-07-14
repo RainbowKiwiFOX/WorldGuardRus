@@ -47,9 +47,9 @@ public class MemberCommands extends RegionCommandsBase {
     }
 
     @Command(aliases = {"addmember", "addmember", "addmem", "am"},
-            usage = "<id> <members...>",
+            usage = "<название> <члены...>",
             flags = "nw:",
-            desc = "Add a member to a region",
+            desc = "Добавление членов в регион",
             min = 2)
     public void addMember(CommandContext args, CommandSender sender) throws CommandException {
         warnAboutSaveFailures(sender);
@@ -78,15 +78,15 @@ public class MemberCommands extends RegionCommandsBase {
 
         AsyncCommandHelper.wrap(future, plugin, sender)
                 .formatUsing(region.getId(), world.getName())
-                .registerWithSupervisor("Adding members to the region '%s' on '%s'")
-                .sendMessageAfterDelay("(Please wait... querying player names...)")
-                .thenRespondWith("Region '%s' updated with new members.", "Failed to add new members");
+                .registerWithSupervisor("Добавление членов в регион '%s' on '%s'")
+                .sendMessageAfterDelay("(Пожалуйста, подождите... получение имен игроков...)")
+                .thenRespondWith("Регион '%s' обновлён с новыми членами.", "Ошибка при добавлении членов");
     }
 
     @Command(aliases = {"addowner", "addowner", "ao"},
-            usage = "<id> <owners...>",
+            usage = "<название> <владельцы...>",
             flags = "nw:",
-            desc = "Add an owner to a region",
+            desc = "Добавление владельцев в регион",
             min = 2)
     public void addOwner(CommandContext args, CommandSender sender) throws CommandException {
         warnAboutSaveFailures(sender);
@@ -117,7 +117,7 @@ public class MemberCommands extends RegionCommandsBase {
                     int maxRegionCount = plugin.getGlobalStateManager().get(world).getMaxRegionCount(player);
                     if (maxRegionCount >= 0 && manager.getRegionCountOfPlayer(localPlayer)
                             >= maxRegionCount) {
-                        throw new CommandException("You already own the maximum allowed amount of regions.");
+                        throw new CommandException("Вы привысили максимальное число регионов.");
                     }
                 }
                 plugin.checkPermission(sender, "worldguard.region.addowner.unclaimed." + id.toLowerCase());
@@ -141,15 +141,15 @@ public class MemberCommands extends RegionCommandsBase {
 
         AsyncCommandHelper.wrap(future, plugin, sender)
                 .formatUsing(region.getId(), world.getName())
-                .registerWithSupervisor("Adding owners to the region '%s' on '%s'")
-                .sendMessageAfterDelay("(Please wait... querying player names...)")
-                .thenRespondWith("Region '%s' updated with new owners.", "Failed to add new owners");
+                .registerWithSupervisor("Добавление владельцев в '%s' on '%s'")
+                .sendMessageAfterDelay("(Пожалуйста, подождите... получение имён игроков...)")
+                .thenRespondWith("Регион '%s' обновлён с новыми владельцами.", "Ошибка при добавлении владельца");
     }
 
     @Command(aliases = {"removemember", "remmember", "removemem", "remmem", "rm"},
-            usage = "<id> <owners...>",
+            usage = "<название> <владельцы...>",
             flags = "naw:",
-            desc = "Remove an owner to a region",
+            desc = "Удаление членов из региона",
             min = 1)
     public void removeMember(CommandContext args, CommandSender sender) throws CommandException {
         warnAboutSaveFailures(sender);
@@ -172,7 +172,7 @@ public class MemberCommands extends RegionCommandsBase {
             future = Futures.immediateFuture(null);
         } else {
             if (args.argsLength() < 2) {
-                throw new CommandException("List some names to remove, or use -a to remove all.");
+                throw new CommandException("Используйте опцию -a, чтобы удалить всех членов сразу.");
             }
 
             // Resolve members asynchronously
@@ -189,14 +189,14 @@ public class MemberCommands extends RegionCommandsBase {
         AsyncCommandHelper.wrap(future, plugin, sender)
                 .formatUsing(region.getId(), world.getName())
                 .registerWithSupervisor("Removing members from the region '%s' on '%s'")
-                .sendMessageAfterDelay("(Please wait... querying player names...)")
-                .thenRespondWith("Region '%s' updated with members removed.", "Failed to remove members");
+                .sendMessageAfterDelay("(Пожалуйста, подождите... получение имён игроков...)")
+                .thenRespondWith("Регион '%s' обновлён с удалёнми членами.", "Не удалось удалить члена");
     }
 
     @Command(aliases = {"removeowner", "remowner", "ro"},
-            usage = "<id> <owners...>",
+            usage = "<название> <владельцы...>",
             flags = "naw:",
-            desc = "Remove an owner to a region",
+            desc = "Удаление владельца из регина",
             min = 1)
     public void removeOwner(CommandContext args, CommandSender sender) throws CommandException {
         warnAboutSaveFailures(sender);
@@ -219,7 +219,7 @@ public class MemberCommands extends RegionCommandsBase {
             future = Futures.immediateFuture(null);
         } else {
             if (args.argsLength() < 2) {
-                throw new CommandException("List some names to remove, or use -a to remove all.");
+                throw new CommandException("Используйте опцию -a, чтобы удалить всех владельцев сразу.");
             }
 
             // Resolve owners asynchronously
@@ -235,8 +235,8 @@ public class MemberCommands extends RegionCommandsBase {
 
         AsyncCommandHelper.wrap(future, plugin, sender)
                 .formatUsing(region.getId(), world.getName())
-                .registerWithSupervisor("Removing owners from the region '%s' on '%s'")
-                .sendMessageAfterDelay("(Please wait... querying player names...)")
-                .thenRespondWith("Region '%s' updated with owners removed.", "Failed to remove owners");
+                .registerWithSupervisor("Удаление владельцев из региона '%s' on '%s'")
+                .sendMessageAfterDelay("(Пожалуйста, подождите... получение имён игроков...)")
+                .thenRespondWith("Регион '%s' обновлён с удалёными владельцами.", "Не удалось удалить владельца");
     }
 }
