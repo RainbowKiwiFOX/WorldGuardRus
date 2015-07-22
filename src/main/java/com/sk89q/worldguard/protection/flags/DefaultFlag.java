@@ -108,7 +108,7 @@ public final class DefaultFlag {
     public static final StringFlag DENY_MESSAGE = new StringFlag("deny-message",
             "" + ChatColor.RED + ChatColor.BOLD + "Эй!" + ChatColor.GRAY + " Вы не можете %what% на этом регионе.");
     public static final StringFlag ENTRY_DENY_MESSAGE = new StringFlag("entry-deny-message",
-            "" + ChatColor.RED + ChatColor.BOLD + "Эй!" + ChatColor.GRAY + " Вы не моежете зайти в этот регион.");
+            "" + ChatColor.RED + ChatColor.BOLD + "Эй!" + ChatColor.GRAY + " Вы не можете зайти в этот регион.");
     public static final StringFlag EXIT_DENY_MESSAGE = new StringFlag("exit-deny-message",
             "" + ChatColor.RED + ChatColor.BOLD + "Эй!" + ChatColor.GRAY + " Вы не можете выйти с этого региона.");
     public static final BooleanFlag EXIT_OVERRIDE = new BooleanFlag("exit-override");

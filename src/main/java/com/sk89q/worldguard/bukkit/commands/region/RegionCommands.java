@@ -554,7 +554,7 @@ public final class RegionCommands extends RegionCommandsBase {
 
             sender.sendMessage(ChatColor.YELLOW
                     + "Флаг " + foundFlag.getName() + " установлен на регион '" +
-                    existing.getId() + "' в значении'" + ChatColor.stripColor(value) + "'.");
+                    existing.getId() + "' в значении '" + ChatColor.stripColor(value) + "'.");
         
         // No value? Clear the flag, if -g isn't specified
         } else if (!args.hasFlag('g')) {
