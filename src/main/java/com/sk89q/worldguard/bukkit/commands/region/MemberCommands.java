@@ -47,9 +47,9 @@ public class MemberCommands extends RegionCommandsBase {
     }
 
     @Command(aliases = {"addmember", "addmember", "addmem", "am"},
-            usage = "<название> <члены...>",
+            usage = "<название> <жители...>",
             flags = "nw:",
-            desc = "Добавление членов в регион",
+            desc = "Добавление жителей в регион",
             min = 2)
     public void addMember(CommandContext args, CommandSender sender) throws CommandException {
         warnAboutSaveFailures(sender);
@@ -78,9 +78,9 @@ public class MemberCommands extends RegionCommandsBase {
 
         AsyncCommandHelper.wrap(future, plugin, sender)
                 .formatUsing(region.getId(), world.getName())
-                .registerWithSupervisor("Добавление членов в регион '%s' on '%s'")
+                .registerWithSupervisor("Добавление жителей в регион '%s' on '%s'")
                 .sendMessageAfterDelay("(Пожалуйста, подождите... получение имен игроков...)")
-                .thenRespondWith("Регион '%s' обновлён с новыми членами.", "Ошибка при добавлении членов");
+                .thenRespondWith("Регион '%s' обновлён с новыми жителями.", "Ошибка при добавлении жителей");
     }
 
     @Command(aliases = {"addowner", "addowner", "ao"},
@@ -147,9 +147,9 @@ public class MemberCommands extends RegionCommandsBase {
     }
 
     @Command(aliases = {"removemember", "remmember", "removemem", "remmem", "rm"},
-            usage = "<название> <владельцы...>",
+            usage = "<название> <жители...>",
             flags = "naw:",
-            desc = "Удаление членов из региона",
+            desc = "Удаление жителей из региона",
             min = 1)
     public void removeMember(CommandContext args, CommandSender sender) throws CommandException {
         warnAboutSaveFailures(sender);
@@ -172,7 +172,7 @@ public class MemberCommands extends RegionCommandsBase {
             future = Futures.immediateFuture(null);
         } else {
             if (args.argsLength() < 2) {
-                throw new CommandException("Используйте опцию -a, чтобы удалить всех членов сразу.");
+                throw new CommandException("Используйте опцию -a, чтобы удалить всех жителей сразу.");
             }
 
             // Resolve members asynchronously
@@ -188,9 +188,9 @@ public class MemberCommands extends RegionCommandsBase {
 
         AsyncCommandHelper.wrap(future, plugin, sender)
                 .formatUsing(region.getId(), world.getName())
-                .registerWithSupervisor("Removing members from the region '%s' on '%s'")
+                .registerWithSupervisor("Удаление жителей региона '%s' on '%s'")
                 .sendMessageAfterDelay("(Пожалуйста, подождите... получение имён игроков...)")
-                .thenRespondWith("Регион '%s' обновлён с удалёнми членами.", "Не удалось удалить члена");
+                .thenRespondWith("Регион '%s' обновлён с удалёнми жителями.", "Не удалось удалить жителя");
     }
 
     @Command(aliases = {"removeowner", "remowner", "ro"},

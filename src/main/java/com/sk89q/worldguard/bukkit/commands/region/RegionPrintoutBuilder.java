@@ -216,7 +216,7 @@ public class RegionPrintoutBuilder implements Callable<String> {
         newLine();
 
         builder.append(ChatColor.BLUE);
-        builder.append("Члены: ");
+        builder.append("Жители: ");
         addDomainString(region.getMembers());
         newLine();
     }
